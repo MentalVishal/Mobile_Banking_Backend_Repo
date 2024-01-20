@@ -12,7 +12,7 @@ userRoute.post("/register", async (req, res) => {
     const { email, name, password, mobile, balance, pin } = req.body;
     const isUser = await userModel.findOne({ email });
     if (isUser) {
-      res.status(400).json({ msg: "User Already Exist" });
+      res.status(200).json({ msg: "User Already Exist" });
     } else {
       bcrypt.hash(password, 5, async (err, hash) => {
         if (err) {
