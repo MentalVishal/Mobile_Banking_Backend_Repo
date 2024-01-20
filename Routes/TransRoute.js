@@ -21,6 +21,8 @@ transRoute.post("/deposit", auth, async (req, res) => {
       description: description,
     });
 
+    userData.balance = userData.balance + amount;
+
     await userData.save();
 
     return res
@@ -46,6 +48,8 @@ transRoute.post("/withdraw", auth, async (req, res) => {
       transType: "Debit",
       description: description,
     });
+
+    userData.balance = userData.balance - amount;
 
     await userData.save();
 
